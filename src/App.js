@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Header from "./components/header.jsx";
+import Books from "./components/books.jsx";
 import fetchData from "./api.js";
 
 function App() {
@@ -12,39 +14,9 @@ function App() {
   };
 
   return (
-    // header section
     <div className="App">
-      <h1>Game of Thrones Books</h1>
-      <h2>Displays a list of books from an API</h2>
-
-      {/* Fetch data from API */}
-      <div>
-        <button className="fetch-button" onClick={() => getBooks()}>
-          Fetch Data
-        </button>
-        <br />
-      </div>
-
-      {/* Display data from API */}
-      <div className="books">
-        {books !== "" &&
-          books.map((book, idx) => {
-            return (
-              <React.Fragment key={idx}>
-                <div className="book">
-                  <h3>{idx + 1}</h3>
-                  <h2>{book.name}</h2>
-                  <div className="details">
-                    <p>👨: {book.authors}</p>
-                    <p>📖: {book.numberOfPages}</p>
-                    <p>🏘️: {book.country}</p>
-                    <p>⏰: {book.released}</p>
-                  </div>
-                </div>
-              </React.Fragment>
-            );
-          })}
-      </div>
+      <Header getBooks={getBooks} />
+      <Books books={books} />
     </div>
   );
 }
